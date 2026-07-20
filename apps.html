@@ -3,8 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Apps | Nataliia Creative</title>
+    <title>Apps | Nataliia Creative</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .app-card {
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(212,175,55,0.04) 100%);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+        .app-icon {
+            width: 110px;
+            height: 110px;
+            border-radius: 22px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid rgba(212,175,55,0.3);
+        }
+        .app-info { flex: 1; }
+        .app-info h2 {
+            margin: 0 0 8px 0;
+            font-size: 1.3em;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .app-info p {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin: 0 0 16px 0;
+        }
+        .badge-available {
+            display: inline-block;
+            color: #4CAF50;
+            font-size: 0.8em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+        .badge-soon {
+            display: inline-block;
+            border: 1px solid #D4AF37;
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            color: #D4AF37;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+        .store-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .store-btn:hover { opacity: 0.8; }
+        .store-btn.apple { background: #fff; color: #000; }
+        .store-btn.google { background: #D4AF37; color: #000; }
+        .store-btn.disabled {
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.35);
+            cursor: default;
+            pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .support-block {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: rgba(212,175,55,0.06);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-top: 6px;
+        }
+        .support-block img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; }
+        .support-block p { margin: 0; font-size: 0.82em; color: rgba(255,255,255,0.6); line-height: 1.5; }
+        .support-block a { color: #D4AF37; text-decoration: none; }
+        .support-block a:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            .app-card { flex-direction: column; }
+            .app-icon { width: 80px; height: 80px; }
+        }
+        .tarot-universe {
+            background: linear-gradient(135deg, rgba(30,10,40,0.6) 0%, rgba(212,175,55,0.06) 100%);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 28px;
+        }
+        .tarot-universe-header h2 { margin: 0 0 10px 0; font-size: 1.3em; letter-spacing: 2px; color: #fff; }
+        .tarot-universe-header p { color: rgba(255,255,255,0.6); font-size: 0.88em; line-height: 1.6; margin: 0 0 28px 0; }
+        .tarot-apps-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+        .tarot-app-sub {
+            flex: 1; min-width: 220px; display: flex; gap: 14px; align-items: flex-start;
+            background: rgba(0,0,0,0.25); border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 14px; padding: 16px;
+        }
+        .tarot-sub-icon { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; flex-shrink: 0; border: 1px solid rgba(212,175,55,0.25); }
+        .tarot-app-sub h3 { margin: 0 0 6px 0; font-size: 0.95em; letter-spacing: 1.5px; color: #fff; }
+        .tarot-app-sub p { color: rgba(255,255,255,0.5); font-size: 0.78em; line-height: 1.5; margin: 6px 0 10px 0; }
+        .tarot-divider {
+            text-align: center; color: rgba(212,175,55,0.5); font-size: 0.75em;
+            letter-spacing: 3px; margin: 24px 0; position: relative;
+        }
+        .tarot-divider::before, .tarot-divider::after {
+            content: ''; position: absolute; top: 50%; width: 35%; height: 1px; background: rgba(212,175,55,0.2);
+        }
+        .tarot-divider::before { left: 0; }
+        .tarot-divider::after { right: 0; }
+        .tarot-stores-row { display: flex; gap: 14px; flex-wrap: wrap; }
+        .tarot-store-card {
+            flex: 1; min-width: 200px; display: flex; align-items: center; gap: 14px;
+            padding: 16px 20px; border-radius: 12px; text-decoration: none;
+            background: rgba(212,175,55,0.07); border: 1px solid rgba(212,175,55,0.2); transition: opacity 0.2s;
+        }
+        .tarot-store-card:hover { opacity: 0.8; }
+        .tarot-store-icon { font-size: 1.8em; flex-shrink: 0; }
+        .tarot-store-card strong { display: block; color: #fff; font-size: 0.9em; letter-spacing: 1px; margin-bottom: 3px; }
+        .store-platform { display: block; color: rgba(255,255,255,0.45); font-size: 0.75em; margin-bottom: 4px; }
+        .store-note { display: block; font-size: 0.72em; color: rgba(255,255,255,0.35); }
+        .store-note.live { color: #4CAF50; }
+        @media (max-width: 600px) {
+            .tarot-apps-row { flex-direction: column; }
+            .tarot-stores-row { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
 
@@ -14,70 +154,117 @@
             <a href="about.html">THE STUDIO</a>
             <a href="books.html">BOOKS</a>
             <a href="apps.html" class="active">APPLICATIONS</a>
-            <a href="miracles.html">LITTLE MIRACLES</a>
             <a href="art.html">ART & 3D</a>
             <a href="contact.html">CONTACT</a>
         </nav>
     </header>
 
-    <main style="max-width: 1000px; margin: 0 auto; padding: 20px;">
-        
-        <section class="hero" style="padding: 20px;">
+    <main style="max-width: 900px; margin: 0 auto; padding: 20px 20px 60px;">
+
+        <section class="hero" style="padding: 20px 0 30px;">
             <h1>APPLICATIONS</h1>
-            <p class="slogan">Digital Solutions for Education, Health & Insight</p>
+            <p class="slogan">Digital tools for education, health & self-discovery</p>
         </section>
 
-        <hr>
+        <hr style="border-color: rgba(212,175,55,0.2); margin-bottom: 36px;">
 
-        <div class="book-card">
-            <img src="images/logo_speakas.jpg" alt="SpeakAS Logo" class="book-cover" style="width: 120px; border-radius: 20px; border: 3px solid #D4AF37;">
-            
-            <div class="book-info">
-                <h2>SpeakAS: English Fluency</h2>
-                <p>An innovative tool for mastering spoken English. Features include voice recognition, interactive dialogues, and custom text-to-speech practice.</p>
-                <span style="color: #4CAF50; font-weight: bold;">✅ AVAILABLE NOW</span>
-                
-                <br><br>
-                
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <a href="https://play.google.com/store/apps/details?id=com.natalia.speakas" target="_blank" class="cta-button">Download on Google Play</a>
-                    
-                    <a href="https://apps.apple.com/ua/app/speakas/id6756919618?l=ru" target="_blank" class="cta-button">Download on App Store</a>
+        <!-- SpeakAS -->
+        <div class="app-card">
+            <img src="images/logo_speakas.jpg" alt="SpeakAS" class="app-icon">
+            <div class="app-info">
+                <h2>SPEAKAS: ENGLISH FLUENCY</h2>
+                <div class="badge-available">✅ AVAILABLE NOW</div>
+                <p>An innovative tool for mastering spoken English. Voice recognition, interactive AI dialogues, animated LinguaCat teacher on Apple Watch, and immersive story-based lessons.</p>
+                <div class="store-buttons">
+                    <a href="https://apps.apple.com/ua/app/speakas/id6756919618" target="_blank" class="store-btn apple">🍎 App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.natalia.speakas" target="_blank" class="store-btn google">▶ Google Play</a>
                 </div>
             </div>
         </div>
 
-       <div class="book-card">
-            <img src="images/logo_main2.png" alt="Smart Body Life Logo" class="book-cover" style="width: 120px; border-radius: 20px; border: 3px solid #D4AF37;">
-            
-            <div class="book-info">
-                <h2>Smart Body Life</h2> 
-                <p>A smart fitness tracker designed for individual progress. Tracks workouts, calculates calories, and adapts to personal goals (weight loss or muscle gain).</p>
-                <span style="color: #4CAF50; font-weight: bold;">✅ AVAILABLE NOW</span>
-                
-                <br><br>
-                
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <a href="https://play.google.com/store/apps/details?id=com.nataliia.smart_body_life" target="_blank" class="cta-button">Download on Google Play</a>
-                    
-                    <a href="https://apps.apple.com/us/app/smart-body-life/id6761608367" target="_blank" class="cta-button">Download on App Store</a>
+        <!-- Smart Body Life -->
+        <div class="app-card">
+            <img src="images/logo_sbl.png" alt="Smart Body Life" class="app-icon">
+            <div class="app-info">
+                <h2>SMART BODY LIFE</h2>
+                <div class="badge-available">✅ AVAILABLE NOW</div>
+                <p>Smart fitness & nutrition tracker with Apple Watch companion. AI-powered BIO Scanner, workout builder, meal logging, and body composition analytics — all in one app.</p>
+                <div class="store-buttons">
+                    <a href="https://apps.apple.com/us/app/smart-body-life/id6761608367" target="_blank" class="store-btn apple">🍎 App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.nataliia.smart_body_life" target="_blank" class="store-btn google">▶ Google Play</a>
+                </div>
+                <div class="support-block">
+                    <img src="images/qr_sbl_instagram.jpg" alt="Instagram QR">
+                    <p>
+                        <strong style="color:#fff;">Need help?</strong><br>
+                        Scan the QR code or visit our Instagram<br>
+                        <a href="https://www.instagram.com/smartbodylife_support/" target="_blank">@smartbodylife_support</a>
+                        <br><span style="font-size:0.9em;">We post tutorials, tips & answer your questions.</span>
+                    </p>
                 </div>
             </div>
         </div>
 
-        <div class="book-card" style="opacity: 0.8;">
-            <img src="images/logo_main.png" alt="Tarot App" class="book-cover" style="width: 120px; border-radius: 20px; filter: grayscale(100%);">
-            <div class="book-info">
-                <h2>Tarot Analyst & AI</h2>
-                <p>Deep psychological analysis based on Tarot archetypes and AI algorithms. Features the unique "Ripples on the Water" decision-making spread.</p>
-                <span style="border: 1px solid #D4AF37; padding: 5px 15px; border-radius: 15px; font-size: 12px; color: #D4AF37;">COMING SOON</span>
+        <!-- TAROT UNIVERSE -->
+        <div class="tarot-universe">
+            <div class="tarot-universe-header">
+                <h2>TAROT OF THE KEEPERS UNIVERSE</h2>
+                <p>A dark fantasy world of 80 hand-designed cards with dragons, celestial figures, and ancient symbols. Available as mobile apps, physical print-on-demand deck, and instant-download digital edition.</p>
+            </div>
+
+            <div class="tarot-apps-row">
+                <div class="tarot-app-sub">
+                    <img src="images/logo_tarot.png" alt="Tarot Diagnostic" class="tarot-sub-icon">
+                    <div>
+                        <h3>TAROT DIAGNOSTIC</h3>
+                        <div class="badge-soon">COMING SOON</div>
+                        <p>Daily ritual · 78-card deck · AI Oracle · 5 spreads · Lunar calendar · Apple Watch</p>
+                        <div class="store-buttons">
+                            <a class="store-btn disabled">🍎 App Store</a>
+                            <a class="store-btn disabled">▶ Google Play</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tarot-app-sub">
+                    <img src="images/logo_keepers.png" alt="Keepers Book" class="tarot-sub-icon">
+                    <div>
+                        <h3>KEEPERS BOOK</h3>
+                        <div class="badge-soon">COMING SOON</div>
+                        <p>Interactive guide · 80 cards · 6 languages · Video animations · AI Oracle</p>
+                        <div class="store-buttons">
+                            <a class="store-btn disabled">🍎 App Store</a>
+                            <a class="store-btn disabled">▶ Google Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarot-divider">ALSO AVAILABLE</div>
+
+            <div class="tarot-stores-row">
+                <a href="https://www.makeplayingcards.com/sell/nataliia-creative" target="_blank" class="tarot-store-card">
+                    <div class="tarot-store-icon">🃏</div>
+                    <div>
+                        <strong>Physical Deck</strong>
+                        <span class="store-platform">MakePlayingCards · Print on demand · Ships worldwide</span>
+                        <span class="store-note live">✅ Available now · Ships worldwide</span>
+                    </div>
+                </a>
+                <a href="https://keepersdeck.etsy.com/listing/4539111153" target="_blank" class="tarot-store-card">
+                    <div class="tarot-store-icon">📦</div>
+                    <div>
+                        <strong>PDF Digital Edition</strong>
+                        <span class="store-platform">Etsy · KeepersDeck · 80 cards + guidebook</span>
+                        <span class="store-note live">✅ Available now · Instant download</span>
+                    </div>
+                </a>
             </div>
         </div>
 
     </main>
 
     <footer>
-        <p>© 2025 Nataliia Creative. All rights reserved.</p>
+        <p>© 2026 Nataliia Creative. All rights reserved. · <a href="privacy.html" style="color:rgba(212,175,55,0.5);text-decoration:none;">Privacy Policy</a></p>
     </footer>
 
 </body>
