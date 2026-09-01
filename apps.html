@@ -141,9 +141,49 @@
         .store-platform { display: block; color: rgba(255,255,255,0.45); font-size: 0.75em; margin-bottom: 4px; }
         .store-note { display: block; font-size: 0.72em; color: rgba(255,255,255,0.35); }
         .store-note.live { color: #4CAF50; }
+        .tarot-book-card {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: rgba(212,175,55,0.05);
+            border: 1px solid rgba(212,175,55,0.25);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 4px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .tarot-book-card:hover { opacity: 0.85; }
+        .tarot-book-cover {
+            width: 90px;
+            height: 90px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        .tarot-book-info { flex: 1; }
+        .tarot-book-info h3 {
+            margin: 4px 0 8px 0;
+            font-size: 0.95em;
+            letter-spacing: 1.5px;
+            color: #fff;
+        }
+        .tarot-book-info p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.82em;
+            line-height: 1.5;
+            margin: 0 0 8px 0;
+        }
+        .tarot-book-meta {
+            font-size: 0.75em;
+            color: rgba(212,175,55,0.6);
+            letter-spacing: 0.5px;
+        }
         @media (max-width: 600px) {
             .tarot-apps-row { flex-direction: column; }
             .tarot-stores-row { flex-direction: column; }
+            .tarot-book-card { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -173,8 +213,21 @@
         <div id="keepers" class="tarot-universe">
             <div class="tarot-universe-header">
                 <h2>TAROT OF THE KEEPERS UNIVERSE</h2>
-                <p>A dark fantasy world of 80 hand-designed cards with dragons, celestial figures, and ancient symbols. Available as mobile apps, physical print-on-demand deck, and instant-download digital edition.</p>
+                <p>A dark fantasy world of 80 hand-designed cards with dragons, celestial figures, and ancient symbols.</p>
             </div>
+
+            <!-- Book — featured first -->
+            <a href="https://www.amazon.com/dp/B0H9YDWCK3" target="_blank" class="tarot-book-card">
+                <img src="images/book_tarot_keepers.png" alt="Tarot of the Keepers Guidebook" class="tarot-book-cover">
+                <div class="tarot-book-info">
+                    <div class="badge-available">✅ AVAILABLE NOW</div>
+                    <h3>TAROT OF THE KEEPERS — GUIDEBOOK</h3>
+                    <p>The official companion book: mythology, symbolism, and interpretation of all 80 cards. Paperback & digital edition on Amazon.</p>
+                    <span class="tarot-book-meta">Amazon · Nataliia Kuzmenko · Worldwide shipping · Print on demand</span>
+                </div>
+            </a>
+
+            <div class="tarot-divider">COMPANION APPS</div>
 
             <div class="tarot-apps-row">
                 <div class="tarot-app-sub">
@@ -220,14 +273,6 @@
                         <strong>PDF Digital Edition</strong>
                         <span class="store-platform">Etsy · KeepersDeck · 80 cards + guidebook</span>
                         <span class="store-note live">✅ Available now · Instant download</span>
-                    </div>
-                </a>
-                <a href="https://www.amazon.com/dp/B0H9YDWCK3" target="_blank" class="tarot-store-card">
-                    <div class="tarot-store-icon"><img src="images/book_tarot_keepers.png" alt="Tarot of the Keepers Book"></div>
-                    <div>
-                        <strong>Guidebook — Paperback</strong>
-                        <span class="store-platform">Amazon · Nataliia Kuzmenko · Worldwide shipping</span>
-                        <span class="store-note live">✅ Available now · Print on demand</span>
                     </div>
                 </a>
             </div>
